@@ -25,11 +25,11 @@ def getData(pagenum):
             #排除list中物件為{}或是電腦技術沒有的物件
             if not (obj == {} or obj['PCSKILL_ALL_DESC'] == ''):
                 #電腦技術全部小寫後切片，加入Counter計數
-                lstB = obj['PCSKILL_ALL_DESC'].lower().split(" ")
+                lstB = obj['PCSKILL_ALL_DESC'].replace("MS SQL","MS_SQL").split(" ")
                 for objB in lstB:
                     result[objB] +=1
     return result
 if __name__ == "__main__":
     num = int(getPageNumber("http://www.104.com.tw/i/apis/jobsearch.cfm?cat=2007001004&fmt=8&page=1&pgsz=200&cols=PCSKILL_ALL_DESC"))
     print(num)
-    print(getData(num).most_common(20))
+    print(getData(20).most_common(20))
